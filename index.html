@@ -1,90 +1,72 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock & Utilities</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>DIGITAL WATCH || STOPWATCH || TIMER</title>
+  <meta name="description" content="A clean, responsive, and interactive web-based Digital Clock, Stopwatch, and Countdown Timer. Perfect for daily time tracking, productivity, and event countdowns." />
+  <meta name="keywords" content="Digital Clock, Stopwatch, Timer, Online Clock, Countdown Timer, Free Stopwatch, Clock App, Productivity Tool, Alarm Clock, Web Clock" />
+  <meta name="author" content="Mallarapu Yaswanth" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <!-- Header -->
+  <header style="text-align: center; padding: 30px 20px 10px;">
+    <h1 style="margin-bottom: 10px; font-size: 2em;">DIGITAL WATCH, STOPWATCH AND TIMER</h1>
+    <p style="color: #555; font-size: 1em; max-width: 800px; margin: 0 auto;">
+      A modern, all-in-one utility web tool to track time efficiently with a digital clock, stopwatch for activities, and a customizable countdown timer — accessible across all devices.
+    </p>
+  </header>
+
+  <!-- Main content -->
+  <main>
     <div class="container">
-        <div class="clock-card">
-            <h1>Digital Clock</h1>
-            <div id="clock" class="time-display">00:00:00</div>
-            <div class="date-display" id="date">January 1, 2025</div>
-        </div>
+      <div class="clock-card">
+        <h2>Digital Clock</h2>
+        <div id="clock" class="time-display">00:00:00</div>
+        <div class="date-display" id="date">January 1, 2025</div>
+      </div>
 
-        <div class="stopwatch-card">
-            <h2>Stopwatch</h2>
-            <div id="stopwatch" class="time-display">00:00:00.000</div>
-            <div class="controls">
-                <button id="startStopwatch">Start</button>
-                <button id="resetStopwatch">Reset</button>
-                <button id="lapStopwatch">Lap</button>
-            </div>
-            <ul id="laps"></ul>
+      <div class="stopwatch-card">
+        <h2>Stopwatch</h2>
+        <div id="stopwatch" class="time-display">00:00:00.000</div>
+        <div class="controls">
+          <button id="startStopwatch">Start</button>
+          <button id="resetStopwatch">Reset</button>
+          <button id="lapStopwatch">Lap</button>
         </div>
+        <ul id="laps"></ul>
+      </div>
 
-        <div class="timer-card">
-            <h2>Timer</h2>
-            <div id="timer" class="time-display">00:00:00</div>
-            <div class="timer-inputs">
-                <input type="number" id="hours" placeholder="HH" min="0" max="23">
-                <input type="number" id="minutes" placeholder="MM" min="0" max="59">
-                <input type="number" id="seconds" placeholder="SS" min="0" max="59">
-            </div>
-            <div class="controls">
-                <button id="startTimer">Start</button>
-                <button id="resetTimer">Reset</button>
-            </div>
+      <div class="timer-card">
+        <h2>Timer</h2>
+        <div id="timer" class="time-display">00:00:00</div>
+        <div class="timer-inputs">
+          <input type="number" id="hours" placeholder="HH" min="0" max="23">
+          <input type="number" id="minutes" placeholder="MM" min="0" max="59">
+          <input type="number" id="seconds" placeholder="SS" min="0" max="59">
         </div>
+        <div class="controls">
+          <button id="startTimer">Start</button>
+          <button id="resetTimer">Reset</button>
+        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
-    <footer>
-  <p>&copy; 2025 Digital Clock, Stopwatch & Timer</p>
-  <p>
-    <a href="https://myg-1107.github.io/Portfolio-Mallarapu-Yaswanth/" target="_blank">Contact Developer</a>
-  </p>
-</footer>
+  </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Digital Clock, Stopwatch & Timer</p>
+    <p><a href="https://myg-1107.github.io/" target="_blank">Contact Developer</a></p>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
 </body>
 </html>
