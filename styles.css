@@ -1,13 +1,30 @@
+/* Custom Properties for Color Scheme */
+:root {
+  --primary-bg: #f5f7fa; /* Soft off-white background */
+  --card-bg: rgba(255, 255, 255, 0.85); /* Glassmorphism effect */
+  --card-border: rgba(255, 255, 255, 0.2);
+  --primary-text: #1a2a44; /* Deep navy for text */
+  --accent-gradient: linear-gradient(135deg, #6b48ff, #00ddeb); /* Vibrant gradient */
+  --button-bg: linear-gradient(135deg, #6b48ff, #00ddeb);
+  --button-hover-bg: linear-gradient(135deg, #00ddeb, #6b48ff);
+  --shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --secondary-text: #64748b;
+  --footer-bg: #e2e8f0;
+}
+
 /* Global Layout */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   display: flex;
   flex-direction: column;
-  background: #ffffff; /* White background */
-  color: #222;
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  overscroll-behavior: none; /* Prevent overscroll bounce */
 }
 
 /* Center content */
@@ -16,171 +33,257 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
   width: 100%;
-  max-width: 1200px;
-  padding: 20px;
+  max-width: 1280px;
+  padding: 1.5rem;
   box-sizing: border-box;
 }
 
-/* Uniform Card Styling */
+/* Card Styling with Glassmorphism */
 .clock-card, .stopwatch-card, .timer-card {
-  flex: 1 1 300px; /* Equal width, min 300px */
-  max-width: 320px;
-  background: #f5f5f5;
-  border: 2px solid #e0e0e0;
-  border-radius: 20px;
-  padding: 25px 20px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 .clock-card:hover, .stopwatch-card:hover, .timer-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 48px rgba(31, 38, 135, 0.3);
 }
 
+/* Subtle hover effect with pseudo-element */
+.clock-card::before, .stopwatch-card::before, .timer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-gradient);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.clock-card:hover::before, .stopwatch-card:hover::before, .timer-card:hover::before {
+  opacity: 0.05;
+}
 
 /* Headings */
 h1, h2 {
-  margin: 0 0 15px;
-  font-size: 1.9em;
-  color: #333;
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  line-height: 1.2;
 }
 
 /* Time and date display */
 .time-display {
-  font-size: 2.6em;
-  font-weight: bold;
-  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 15px 0;
+  background-clip: text;
+  color: transparent;
+  margin: 1rem 0;
+  letter-spacing: -0.02em;
 }
 
 .date-display {
-  font-size: 1.2em;
-  color: #555;
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  font-weight: 400;
 }
 
 /* Controls (buttons) */
 .controls {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
   justify-content: center;
-  margin-top: 15px;
+  margin-top: 1rem;
 }
 
 button {
-  background: linear-gradient(to right, #36d1dc, #5b86e5);
+  background: var(--button-bg);
   border: none;
-  padding: 12px 25px;
-  border-radius: 30px;
-  color: #fff;
-  font-size: 1em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(to right, #5b86e5, #36d1dc);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: var(--button-hover-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Button ripple effect */
+button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+button:hover::after {
+  transform: scale(2.5);
+  opacity: 0;
 }
 
 /* Timer input fields */
 .timer-inputs {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
   justify-content: center;
-  margin: 10px 0;
+  margin: 0.75rem 0;
 }
 
 input {
-  width: 60px;
-  padding: 8px;
-  border: 1px solid #ccc;
+  width: 70px;
+  padding: 0.5rem;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
-  background: #fff;
-  color: #333;
+  background: var(--input-bg);
+  color: var(--primary-text);
   text-align: center;
-  font-size: 1em;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6b48ff;
+  box-shadow: 0 0 0 3px rgba(107, 72, 255, 0.2);
 }
 
 input::placeholder {
-  color: #aaa;
+  color: var(--secondary-text);
+  opacity: 0.7;
 }
 
 /* Lap list */
 ul#laps {
   list-style: none;
   padding: 0;
-  max-height: 100px;
+  max-height: 120px;
   overflow-y: auto;
-  margin-top: 10px;
+  margin-top: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: #6b48ff var(--card-bg);
 }
 
 ul#laps li {
-  background: #ececec;
-  margin: 5px 0;
-  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0.5rem 0;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
-  color: #444;
+  color: var(--primary-text);
+  font-size: 0.95rem;
+}
+
+/* Custom scrollbar */
+ul#laps::-webkit-scrollbar {
+  width: 6px;
+}
+
+ul#laps::-webkit-scrollbar-track {
+  background: var(--card-bg);
+  border-radius: 8px;
+}
+
+ul#laps::-webkit-scrollbar-thumb {
+  background: #6b48ff;
+  border-radius: 8px;
 }
 
 /* Footer Styling */
 .footer {
-  background: #f0f0f0;
-  color: #333;
+  background: var(--footer-bg);
+  color: var(--secondary-text);
   text-align: center;
-  padding: 20px 10px;
-  font-size: 16px;
+  padding: 1.25rem;
+  font-size: 0.95rem;
   margin-top: auto;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
-  border-top: 1px solid #ddd;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
 }
 
 /* Link in footer */
 .footer a {
-  color: #007bff;
+  color: #6b48ff;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .footer a:hover {
-  color: #0056b3;
+  color: #00ddeb;
   text-decoration: underline;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    place-items: center;
   }
 
   .clock-card, .stopwatch-card, .timer-card {
-    width: 90%;
-    max-width: none;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .time-display {
+    font-size: 2rem;
   }
 }
 
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+  .clock-card, .stopwatch-card, .timer-card, button {
+    transition: none;
+  }
+}
 
-/* Box sizing fix and overflow */
-.clock-card, .stopwatch-card, .timer-card {
-  box-sizing: border-box;
-  overflow: hidden;
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-bg: #ffffff;
+    --card-bg: #ffffff;
+    --primary-text: #000000;
+    --secondary-text: #333333;
+    --button-bg: #0000ff;
+    --button-hover-bg: #0000cc;
+  }
 }
