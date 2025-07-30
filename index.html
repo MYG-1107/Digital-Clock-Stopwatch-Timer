@@ -3,81 +3,272 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <!-- SEO Meta Tags -->
-  <title>Digital Clock, Stopwatch and Timer</title>
-      <link rel="icon" type="image/png" sizes="16x16" href="logo.jpg" />
-
-  <meta name="description" content="A clean, responsive, and interactive web-based Digital Clock, Stopwatch, and Countdown Timer. Perfect for daily time tracking, productivity, and event countdowns." />
+  <title>Digital Clock, Stopwatch & Timer</title>
+  <meta name="description" content="A modern, responsive web tool featuring a Digital Clock, Stopwatch, and Countdown Timer for efficient time tracking and productivity." />
   <meta name="keywords" content="Digital Clock, Stopwatch, Timer, Online Clock, Countdown Timer, Free Stopwatch, Clock App, Productivity Tool, Alarm Clock, Web Clock" />
   <meta name="author" content="Mallarapu Yaswanth" />
   <meta name="robots" content="index, follow" />
   <meta name="language" content="English" />
-  <meta name="theme-color" content="_blank" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#1e40af" />
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .favicon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .favicon:hover {
+      transform: scale(1.1);
+    }
+    .modal {
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .modal-hidden {
+      opacity: 0;
+      transform: translateY(-20px);
+      pointer-events: none;
+    }
+  </style>
 </head>
+<body class="bg-gray-100 font-sans text-gray-800">
+  <!-- Greeting Modal -->
+  <div id="greetingModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 modal">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full relative">
+      <button id="closeModal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-800 text-xl font-bold">&times;</button>
+      <h2 class="text-2xl font-bold mb-4 text-blue-600">Welcome!</h2>
+      <p id="greetingMessage" class="text-lg mb-4">
+        Good <span id="timeOfDay"></span>! Today is <span id="currentDay"></span>, <span id="currentDate"></span>. 
+        <span id="specialEvents" class="font-semibold text-blue-600"></span>
+      </p>
+      <p class="text-right font-semibold">Best regards,<br>Mallarapu Yaswanth</p>
+    </div>
+  </div>
 
-<body>
   <!-- Header -->
-  <header style="text-align: center; padding: 30px 20px 10px;">
-    <h1 style="margin-bottom: 10px; font-size: 2em;">DIGITAL CLOCK, STOPWATCH AND TIMER</h1>
-    <p style="color: #555; font-size: 1em; max-width: 800px; margin: 0 auto;">
-      A modern, all-in-one utility web tool to track time efficiently with a digital clock, stopwatch for activities, and a customizable countdown timer — accessible across all devices.
+  <header class="bg-blue-600 text-white text-center py-8">
+    <img src="logo.jpg" class="favicon mx-auto mb-4" alt="Website Logo">
+    <h1 class="text-3xl md:text-4xl font-bold">Digital Clock, Stopwatch & Timer</h1>
+    <p class="text-sm md:text-base mt-2 max-w-2xl mx-auto">
+      A sleek, all-in-one utility to track time with a digital clock, stopwatch for activities, and a customizable countdown timer — accessible on all devices.
     </p>
   </header>
 
-  <!-- Main content -->
-  <main>
-    <div class="container">
-      <div class="clock-card">
-        <h2>Digital Clock</h2>
-        <div id="clock" class="time-display">00:00:00</div>
-        <div class="date-display" id="date">January 1, 2025</div>
+  <!-- Main Content -->
+  <main class="container mx-auto p-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Digital Clock -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h2 class="text-xl font-semibold mb-4 text-blue-600">Digital Clock</h2>
+        <div id="clock" class="text-4xl md:text-5xl font-mono mb-2">00:00:00</div>
+        <div id="date" class="text-lg text-gray-600">January 1, 2025</div>
       </div>
 
-      <div class="stopwatch-card">
-        <h2>Stopwatch</h2>
-        <div id="stopwatch" class="time-display">00:00:00.000</div>
-        <div class="controls">
-          <button id="startStopwatch">Start</button>
-          <button id="resetStopwatch">Reset</button>
-          <button id="lapStopwatch">Lap</button>
+      <!-- Stopwatch -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h2 class="text-xl font-semibold mb-4 text-blue-600">Stopwatch</h2>
+        <div id="stopwatch" class="text-4xl md:text-5xl font-mono mb-4">00:00:00.000</div>
+        <div class="flex justify-center gap-2 mb-4">
+          <button id="startStopwatch" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start</button>
+          <button id="resetStopwatch" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">Reset</button>
+          <button id="lapStopwatch" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Lap</button>
         </div>
-        <ul id="laps"></ul>
+        <ul id="laps" class="text-left max-h-40 overflow-y-auto"></ul>
       </div>
 
-      <div class="timer-card">
-        <h2>Timer</h2>
-        <div id="timer" class="time-display">00:00:00</div>
-        <div class="timer-inputs">
-          <input type="number" id="hours" placeholder="HH" min="0" max="23">
-          <input type="number" id="minutes" placeholder="MM" min="0" max="59">
-          <input type="number" id="seconds" placeholder="SS" min="0" max="59">
+      <!-- Timer -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h2 class="text-xl font-semibold mb-4 text-blue-600">Timer</h2>
+        <div id="timer" class="text-4xl md:text-5xl font-mono mb-4">00:00:00</div>
+        <div class="flex justify-center gap-2 mb-4">
+          <input type="number" id="hours" placeholder="HH" min="0" max="23" class="w-16 p-2 border rounded text-center">
+          <input type="number" id="minutes" placeholder="MM" min="0" max="59" class="w-16 p-2 border rounded text-center">
+          <input type="number" id="seconds" placeholder="SS" min="0" max="59" class="w-16 p-2 border rounded text-center">
         </div>
-        <div class="controls">
-          <button id="startTimer">Start</button>
-          <button id="resetTimer">Reset</button>
+        <div class="flex justify-center gap-2">
+          <button id="startTimer" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start</button>
+          <button id="resetTimer" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">Reset</button>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Digital Clock, Stopwatch & Timer</p>
-    <p><a href="https://myg-1107.github.io/" target="_blank">Contact Developer</a></p>
-  </footer>
 
-  <!-- Script -->
-  <script src="script.js"></script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FCD61F3XSP"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- JavaScript -->
+  <script>
+    // Greeting Modal Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('greetingModal');
+      const closeModal = document.getElementById('closeModal');
+      const greetingMessage = document.getElementById('greetingMessage');
+      const timeOfDay = document.getElementById('timeOfDay');
+      const currentDay = document.getElementById('currentDay');
+      const currentDate = document.getElementById('currentDate');
+      const specialEvents = document.getElementById('specialEvents');
 
-  gtag('config', 'G-FCD61F3XSP');
-</script>
+      // Get current time and date
+      const now = new Date();
+      const hours = now.getHours();
+      const day = now.toLocaleString('en-US', { weekday: 'long' });
+      const date = now.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      const timeOfDayText = hours < 12 ? 'Morning' : hours < 18 ? 'Afternoon' : 'Evening';
+
+      // Sample special events (can be expanded with an API or static list)
+      const events = {
+        'January 1': 'Happy New Year!',
+        'July 4': 'Independence Day (USA)',
+        'December 25': 'Christmas Day'
+      };
+      const todayKey = now.toLocaleString('en-US', { month: 'long', day: 'numeric' });
+      const eventText = events[todayKey] ? `Today is special: ${events[todayKey]}` : '';
+
+      // Set greeting content
+      timeOfDay.textContent = timeOfDayText;
+      currentDay.textContent = day;
+      currentDate.textContent = date;
+      specialEvents.textContent = eventText;
+
+      // Close modal on click
+      closeModal.addEventListener('click', () => {
+        modal.classList.add('modal-hidden');
+        setTimeout(() => modal.style.display = 'none', 300);
+      });
+    });
+
+    // Digital Clock
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('date').textContent = now.toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Stopwatch
+    let stopwatchInterval = null;
+    let stopwatchTime = 0;
+    let isRunning = false;
+    const startStopwatchBtn = document.getElementById('startStopwatch');
+    const resetStopwatchBtn = document.getElementById('resetStopwatch');
+    const lapStopwatchBtn = document.getElementById('lapStopwatch');
+    const stopwatchDisplay = document.getElementById('stopwatch');
+    const lapsList = document.getElementById('laps');
+
+    function updateStopwatch() {
+      stopwatchTime += 10;
+      const hours = Math.floor(stopwatchTime / 3600000);
+      const minutes = Math.floor((stopwatchTime % 3600000) / 60000);
+      const seconds = Math.floor((stopwatchTime % 60000) / 1000);
+      const milliseconds = Math.floor((stopwatchTime % 1000));
+      stopwatchDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(milliseconds).padStart(3, '0')}`;
+    }
+
+    startStopwatchBtn.addEventListener('click', () => {
+      if (!isRunning) {
+        stopwatchInterval = setInterval(updateStopwatch, 10);
+        startStopwatchBtn.textContent = 'Pause';
+        isRunning = true;
+      } else {
+        clearInterval(stopwatchInterval);
+        startStopwatchBtn.textContent = 'Start';
+        isRunning = false;
+      }
+    });
+
+    resetStopwatchBtn.addEventListener('click', () => {
+      clearInterval(stopwatchInterval);
+      stopwatchTime = 0;
+      isRunning = false;
+      startStopwatchBtn.textContent = 'Start';
+      stopwatchDisplay.textContent = '00:00:00.000';
+      lapsList.innerHTML = '';
+    });
+
+    lapStopwatchBtn.addEventListener('click', () => {
+      if (isRunning) {
+        const li = document.createElement('li');
+        li.textContent = stopwatchDisplay.textContent;
+        li.className = 'text-sm text-gray-600';
+        lapsList.appendChild(li);
+      }
+    });
+
+    // Timer
+    let timerInterval = null;
+    let timerTime = 0;
+    let timerRunning = false;
+    const startTimerBtn = document.getElementById('startTimer');
+    const resetTimerBtn = document.getElementById('resetTimer');
+    const timerDisplay = document.getElementById('timer');
+    const hoursInput = document.getElementById('hours');
+    const minutesInput = document.getElementById('minutes');
+    const secondsInput = document.getElementById('seconds');
+
+    function updateTimer() {
+      if (timerTime <= 0) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        startTimerBtn.textContent = 'Start';
+        alert('Timer finished!');
+        return;
+      }
+      timerTime -= 1000;
+      const hours = Math.floor(timerTime / 3600000);
+      const minutes = Math.floor((timerTime % 3600000) / 60000);
+      const seconds = Math.floor((timerTime % 60000) / 1000);
+      timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    startTimerBtn.addEventListener('click', () => {
+      if (!timerRunning) {
+        const hours = parseInt(hoursInput.value) || 0;
+        const minutes = parseInt(minutesInput.value) || 0;
+        const seconds = parseInt(secondsInput.value) || 0;
+        timerTime = (hours * 3600 + minutes * 60 + seconds) * 1000;
+        if (timerTime > 0) {
+          timerInterval = setInterval(updateTimer, 1000);
+          startTimerBtn.textContent = 'Pause';
+          timerRunning = true;
+        }
+      } else {
+        clearInterval(timerInterval);
+        startTimerBtn.textContent = 'Start';
+        timerRunning = false;
+      }
+    });
+
+    resetTimerBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      timerTime = 0;
+      timerRunning = false;
+      startTimerBtn.textContent = 'Start';
+      timerDisplay.textContent = '00:00:00';
+      hoursInput.value = '';
+      minutesInput.value = '';
+      secondsInput.value = '';
+    });
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCD61F3XSP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FCD61F3XSP');
+  </script>
 </body>
+ <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-4">
+    <p>&copy; 2025 Digital Clock, Stopwatch & Timer</p>
+    <p><a href="https://myg-1107.github.io/" target="_blank" class="underline hover:text-blue-200">Contact Developer</a></p>
+  </footer>
 </html>
