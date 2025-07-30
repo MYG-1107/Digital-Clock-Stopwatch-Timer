@@ -70,13 +70,14 @@
         <div id="date" class="text-lg text-gray-600">January 1, 2025</div>
       </div>
 
-      <div class="stopwatch-card">
-        <h2>Stopwatch</h2>
-        <div id="stopwatch" class="time-display">00:00:00.000</div>
-        <div class="controls">
-          <button id="startStopwatch">Start</button>
-          <button id="resetStopwatch">Reset</button>
-          <button id="lapStopwatch">Lap</button>
+      <!-- Stopwatch -->
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <h2 class="text-xl font-semibold mb-4 text-blue-600">Stopwatch</h2>
+        <div id="stopwatch" class="text-4xl md:text-5xl font-mono mb-4">00:00:00.000</div>
+        <div class="flex justify-center gap-2 mb-4">
+          <button id="startStopwatch" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Start</button>
+          <button id="resetStopwatch" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">Reset</button>
+          <button id="lapStopwatch" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Lap</button>
         </div>
         <ul id="laps" class="text-left max-h-40 overflow-y-auto"></ul>
       </div>
