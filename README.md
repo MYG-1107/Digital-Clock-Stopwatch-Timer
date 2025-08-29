@@ -18,7 +18,7 @@ Navigate to the project directory:cd Digital-Clock-Stopwatch-Timer
 
 Open index.html in a web browser to view the application.
 
-Usage
+# Usage
 
 Digital Clock: Automatically displays the current time and date, updating in real-time.
 Stopwatch: Start, stop, and reset the stopwatch to track elapsed time.
