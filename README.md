@@ -6,7 +6,7 @@ Digital Clock: Displays the current time and date in a clear, readable format.
 Stopwatch: Tracks elapsed time with millisecond precision, perfect for timing activities.
 Timer: Customizable countdown timer for setting specific durations.
 
-Demo
+# Demo
 Visit the live demo at Digital Clock, Stopwatch & Timer.
 Installation
 
