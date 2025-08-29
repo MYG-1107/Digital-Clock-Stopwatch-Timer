@@ -24,7 +24,7 @@ Digital Clock: Automatically displays the current time and date, updating in rea
 Stopwatch: Start, stop, and reset the stopwatch to track elapsed time.
 Timer: Set a custom duration, start the countdown, and receive an alert when the timer finishes.
 
-Technologies Used
+# Technologies Used
 
 HTML5
 CSS3
