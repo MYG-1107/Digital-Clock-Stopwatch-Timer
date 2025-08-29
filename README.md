@@ -7,16 +7,7 @@ Stopwatch: Tracks elapsed time with millisecond precision, perfect for timing ac
 Timer: Customizable countdown timer for setting specific durations.
 
 # Demo
-Visit the live demo at Digital Clock, Stopwatch & Timer.
-Installation
-
-Clone the repository:git clone https://github.com/myg-1107/Digital-Clock-Stopwatch-Timer.git
-
-
-Navigate to the project directory:cd Digital-Clock-Stopwatch-Timer
-
-
-Open index.html in a web browser to view the application.
+https://myg-1107.github.io/Digital-Clock-Stopwatch-Timer/
 
 # Usage
 
