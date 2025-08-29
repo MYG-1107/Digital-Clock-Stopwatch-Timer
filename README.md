@@ -30,5 +30,5 @@ HTML5 <br>
 CSS3<Br>
 JavaScript
 
-License
+# License
 This project is licensed under the MIT License.
