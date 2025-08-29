@@ -26,8 +26,8 @@ Timer: Set a custom duration, start the countdown, and receive an alert when the
 
 # Technologies Used
 
-HTML5
-CSS3
+HTML5 <br>
+CSS3<Br>
 JavaScript
 
 Contributing
