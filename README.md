@@ -1,4 +1,4 @@
-Digital Clock, Stopwatch & Timer
+# Digital Clock, Stopwatch & Timer
 A sleek, all-in-one utility to track time with a digital clock, stopwatch for activities, and a customizable countdown timer — accessible on all devices.
 Features
 
