@@ -2,8 +2,8 @@
 A sleek, all-in-one utility to track time with a digital clock, stopwatch for activities, and a customizable countdown timer — accessible on all devices.
 Features
 
-**Digital Clock**: Displays the current time and date in a clear, readable format.
-**Stopwatch**: Tracks elapsed time with millisecond precision, perfect for timing activities.
+**Digital Clock**: Displays the current time and date in a clear, readable format.<Br>
+**Stopwatch**: Tracks elapsed time with millisecond precision, perfect for timing activities.<br>
 **Timer**: Customizable countdown timer for setting specific durations.
 
 # Demo
