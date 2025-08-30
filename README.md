@@ -11,7 +11,7 @@ https://myg-1107.github.io/Digital-Clock-Stopwatch-Timer/
 
 # Usage
 
-**Digital Clock**: Automatically displays the current time and date, updating in real-time.<br>
+**Digital Clock**:_ Automatically displays the current time and date, updating in real-time._<br>
 **Stopwatch**: Start, stop, and reset the stopwatch to track elapsed time.<br>
 **Timer**: Set a custom duration, start the countdown, and receive an alert when the timer finishes.
 
