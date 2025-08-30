@@ -3,7 +3,7 @@ A sleek, all-in-one utility to track time with a digital clock, stopwatch for ac
 Features
 
 **Digital Clock**: Displays the current time and date in a clear, readable format.
-Stopwatch: Tracks elapsed time with millisecond precision, perfect for timing activities.
+**Stopwatch**: Tracks elapsed time with millisecond precision, perfect for timing activities.
 Timer: Customizable countdown timer for setting specific durations.
 
 # Demo
