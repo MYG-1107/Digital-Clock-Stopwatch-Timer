@@ -4,7 +4,7 @@ Features
 
 **Digital Clock**: Displays the current time and date in a clear, readable format.
 **Stopwatch**: Tracks elapsed time with millisecond precision, perfect for timing activities.
-Timer: Customizable countdown timer for setting specific durations.
+**Timer**: Customizable countdown timer for setting specific durations.
 
 # Demo
 https://myg-1107.github.io/Digital-Clock-Stopwatch-Timer/
