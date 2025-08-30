@@ -121,10 +121,98 @@
 
       // Sample special events (can be expanded with an API or static list)
       const events = {
-        'January 1': 'Happy New Year!',
-        'July 4': 'Independence Day (USA)',
-        'December 25': 'Christmas Day'
-      };
+  // January
+  'January 1': ['Happy New Year!', 'Apple Inc. Founded (1976)'],
+  'January 12': 'Swami Vivekananda\'s Birthday (India)',
+  'January 15': 'Army Day (India)',
+  'January 26': 'Republic Day (India)',
+  'January 30': 'Martyrs’ Day (India)',
+
+  // February
+  'February 4': 'Facebook (Meta) Founded (2004)',
+  'February 14': 'Valentine\'s Day',
+  'February 20': 'Social Justice Day (India)',
+  'February 23': 'George Washington\'s Birthday (USA)',
+  'February 28': 'National Science Day (India)',
+
+  // March
+  'March 8': 'International Women\'s Day',
+  'March 14': 'Albert Einstein\'s Birthday',
+  'March 21': 'International Day for the Elimination of Racial Discrimination',
+  'March 22': 'World Water Day',
+  'March 25': 'Good Friday',
+  'March 29': 'Ram Navami (India)',
+
+  // April
+  'April 1': 'April Fool\'s Day',
+  'April 4': 'Google Founded (1998)',
+  'April 7': 'World Health Day',
+  'April 14': 'Ambedkar Jayanti (India)',
+  'April 21': 'Eid al-Fitr (India)',
+  'April 22': 'Earth Day',
+  'April 23': 'William Shakespeare\'s Birthday',
+
+  // May
+  'May 1': 'International Labour Day',
+  'May 3': 'Press Freedom Day',
+  'May 8': 'Mother\'s Day',
+  'May 15': 'International Day of Families',
+  'May 16': 'Buddha Purnima (India)',
+  'May 22': 'International Day for Biological Diversity',
+  'May 31': 'World No Tobacco Day',
+
+  // June
+  'June 5': 'World Environment Day',
+  'June 15': 'World Elder Abuse Awareness Day',
+  'June 21': 'International Yoga Day (India)',
+  'June 23': 'International Widows Day',
+
+  // July
+  'July 4': 'Independence Day (USA)',
+  'July 5': 'Amazon Founded (1994)',
+  'July 7': 'World Chocolate Day',
+  'July 11': 'World Population Day',
+  'July 15': 'World Youth Skills Day',
+  'July 18': 'Nelson Mandela\'s Birthday (International)',
+  'July 26': 'Kargil Vijay Diwas (India)',
+
+  // August
+  'August 15': ['Independence Day (India)', 'Napoleon Bonaparte\'s Birthday'],
+  'August 19': 'World Photography Day',
+  'August 22': 'Raksha Bandhan (India)',
+  'August 30': 'National Small Industry Day (India)',
+
+  // September
+  'September 5': 'Teacher\'s Day (India)',
+  'September 5': 'Leo Tolstoy\'s Birthday',
+  'September 21': 'International Day of Peace',
+  'September 27': 'World Tourism Day',
+  'September 29': 'World Heart Day',
+
+  // October
+  'October 2': 'Gandhi Jayanti (India)',
+  'October 10': 'World Mental Health Day',
+  'October 15': 'Global Handwashing Day',
+  'October 24': 'United Nations Day',
+  'October 25': 'Diwali (India)',
+  'October 28': 'Microsoft Founded (1975)',
+
+  // November
+  'November 1': 'All Saints Day',
+  'November 14': 'Children\'s Day (India)',
+  'November 15': 'Indira Gandhi\'s Birthday (India)',
+  'November 17': 'World Prematurity Day',
+  'November 18': 'International Students Day',
+  'November 20': 'Apple Launches the First iPhone (2007)',
+  'November 30': 'St. Andrew’s Day',
+
+  // December
+  'December 10': 'Human Rights Day',
+  'December 12': 'Disney Founded (1923)',
+  'December 25': ['Christmas Day', 'Isaac Newton\'s Birthday'],
+  'December 31': 'New Year\'s Eve',
+};
+
       const todayKey = now.toLocaleString('en-US', { month: 'long', day: 'numeric' });
       const eventText = events[todayKey] ? `Today is special: ${events[todayKey]}` : '';
 
